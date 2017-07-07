@@ -32,3 +32,13 @@ func BenchmarkMalloc(b *testing.B) {
 		_ = &Message{}
 	}
 }
+
+func BenchmarkMemCopy(b *testing.B) {
+	dst := make([]byte, 2048)
+	src := make([]byte, 2048)
+
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		copy(dst, src)
+	}
+}
